@@ -1,40 +1,36 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Function to load research publications dynamically
-    fetch('research.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('research-container');
-            data.publications.forEach(pub => {
-                const div = document.createElement('div');
-                div.classList.add('publication');
-                div.innerHTML = `
-                    <h3>${pub.title}</h3>
-                    <p><strong>Authors:</strong> ${pub.authors}</p>
-                    <p>${pub.details}</p>
-                    <a href="${pub.link}" target="_blank">Read more</a>
-                `;
-                container.appendChild(div);
-            });
-        });
+    function openTab(event, tabName) {
+        var i, tabcontent, tablinks;
 
-    // Smooth scrolling for navbar links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(event) {
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Get all elements with class="nav-link" and remove the class "active"
+        tablinks = document.getElementsByClassName("nav-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show the current tab, and add an "active" class to the link that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
+    }
+
+    // Add event listeners to all nav links
+    const navLinks = document.querySelectorAll(".nav-link");
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
             event.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            window.scrollTo({
-                top: target.offsetTop - 50, // Adjust this offset as needed
-                behavior: 'smooth'
-            });
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
+            const targetId = this.getAttribute("href").substring(1);
+            openTab(event, targetId);
         });
     });
 
-    // Show the first tab content by default
-    if (window.location.hash) {
-        document.querySelector(window.location.hash).style.opacity = 1;
-    } else {
-        document.querySelector('.tabcontent').style.opacity = 1;
-    }
+    // Default open the "About" tab
+    document.querySelector(".nav-link.active").click();
 });

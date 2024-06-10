@@ -1,5 +1,5 @@
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
+    // Function to open tabs
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -14,22 +14,22 @@ document.addEventListener('DOMContentLoaded', function() {
         evt.currentTarget.className += " active";
     }
 
-    document.querySelector('.tab button:first-child').click(); // Open the first tab by default
+    // Open the "About" tab by default
+    document.getElementsByClassName("tablinks")[0].click();
 
-    fetch('research.json')
-        .then(response => response.json())
-        .then(data => {
-            const researchContainer = document.getElementById('research-container');
-            data.publications.forEach(publication => {
-                const publicationDiv = document.createElement('li');
-                publicationDiv.className = 'publication';
-                publicationDiv.innerHTML = `
-                    <h3>${publication.title}</h3>
-                    <p>${publication.authors}</p>
-                    <p>${publication.details}</p>
-                    <a href="${publication.link}" target="_blank">Read more</a>
-                `;
-                researchContainer.appendChild(publicationDiv);
-            });
-        });
+    // Function to load research items
+    function loadResearchItems() {
+        const researchContainer = document.querySelector('.research-container');
+
+        // Clear existing research items
+        researchContainer.innerHTML = '';
+
+        // Add background tile
+        const backgroundTile = document.createElement('div');
+        backgroundTile.classList.add('research-item-background');
+        researchContainer.appendChild(backgroundTile);
+    }
+
+    // Load research items on page load
+    loadResearchItems();
 });

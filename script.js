@@ -1,10 +1,14 @@
 function openTab(evt, tabName) {
+    // Declare all variables
     var i, tabcontent, tablinks;
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].classList.remove("active");
+        tabcontent[i].style.opacity = '0';
+        setTimeout(() => {
+            tabcontent[i].style.height = '0';
+        }, 500); // Wait for the fade out to finish
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -14,11 +18,10 @@ function openTab(evt, tabName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).classList.add("active");
+    setTimeout(() => {
+        document.getElementById(tabName).style.height = 'auto';
+        document.getElementById(tabName).style.opacity = '1';
+    }, 500); // Delay to allow other content to fade out first
+
     evt.currentTarget.className += " active";
 }
-
-// Set default tab to open after DOM is fully loaded
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("defaultOpen").click();
-});

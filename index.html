@@ -5,30 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matvii Mykhailichenko</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="icon.png" type="image/x-icon">
+    <link rel="icon" href="icon.png" type="image/x-icon"> <!-- Link to your favicon here -->
 </head>
 <body>
     <header>
         <h1>Matvii Mykhailichenko</h1>
     </header>
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+        <button class="tablinks" onclick="openTab(event, 'About')">About</button>
         <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
         <button class="tablinks" onclick="openTab(event, 'Contact')">Contact</button>
     </div>
     <section id="About" class="tabcontent">
-        <div class="content-container">
+        <div class="about-container">
             <p>Hi, I am Matvii Mykhailichenko, a bioinformatician dedicated to advancing Ukrainian bioinformatics through the Bioinformatics for Ukraine society. I actively engage in research, which you can explore in the "Research" tab.</p>
-            <img src="Pictures/Picture1.jpeg" alt="Research work in progress">
+            <div class="about-images">
+                <img src="Pictures/Picture1.jpeg" alt="Research work in progress">
+                <img src="Pictures/Picture2.jpeg" alt="Group photo with colleagues">
+            </div>
         </div>
     </section>
     <section id="Research" class="tabcontent">
-        <div class="content-container">
+        <div class="research-container">
             <!-- Research items will be dynamically inserted here -->
         </div>
     </section>
     <section id="Contact" class="tabcontent">
-        <div class="content-container">
+        <div class="contact-container">
             <h2>Contact</h2>
             <ul class="contact-list">
                 <li>

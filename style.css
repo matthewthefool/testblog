@@ -129,9 +129,7 @@ li {
     display: flex;
     align-items: flex-start;
     padding: 20px;
-    border: 1px solid #e1e1e1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     border-radius: 10px;
     margin: 10px 0;
     max-width: 800px;

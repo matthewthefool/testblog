@@ -1,3 +1,7 @@
+window.onload = function() {
+    // Trigger the About tab to open when the page loads
+    openTab(null, 'About');
+};
 document.addEventListener("DOMContentLoaded", function() {
     loadResearchData();
 });

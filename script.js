@@ -4,6 +4,7 @@ window.onload = function() {
 };
 document.addEventListener("DOMContentLoaded", function() {
     loadResearchData();
+    loadPostsData();
 });
 
 function openTab(evt, tabName) {
@@ -53,4 +54,26 @@ function loadResearchData() {
             });
         })
         .catch(error => console.error('Error loading research data:', error));
+}
+
+function loadPostsData() {
+    fetch('posts.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.querySelector('.posts-container');
+            data.posts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post-item';
+                const imageUrl = post.image || 'icons/image_placeholder.png';
+                postDiv.innerHTML = `
+                    <img src="${imageUrl}" alt="Post image"> <!-- Post image -->
+                    <div class="post-item-content">
+                        <h3>${post.title}</h3>
+                        <p>${post.content}</p>
+                    </div>
+                `;
+                container.appendChild(postDiv);
+            });
+        })
+        .catch(error => console.error('Error loading posts data:', error));
 }

@@ -1,56 +1,60 @@
-window.onload = function() {
-    // Trigger the About tab to open when the page loads
-    openTab(null, 'About');
-};
-document.addEventListener("DOMContentLoaded", function() {
-    loadResearchData();
+document.addEventListener('DOMContentLoaded', () => {
+    // Load research items
+    fetch('research.json')
+        .then(response => response.json())
+        .then(data => {
+            const researchContainer = document.querySelector('.research-container');
+            data.publications.forEach(publication => {
+                const researchItem = document.createElement('div');
+                researchItem.classList.add('research-item');
+                researchItem.innerHTML = `
+                    <img src="${publication.image}" alt="${publication.title}">
+                    <div class="research-item-content">
+                        <h3>${publication.title}</h3>
+                        <p>${publication.details}</p>
+                        <a href="${publication.link}" target="_blank">Read more</a>
+                    </div>
+                `;
+                researchContainer.appendChild(researchItem);
+            });
+        })
+        .catch(error => console.error('Error fetching research items:', error));
+
+    // Load posts
+    fetch('posts.json')
+        .then(response => response.json())
+        .then(data => {
+            const postsContainer = document.querySelector('.posts-container');
+            data.posts.forEach(post => {
+                const postItem = document.createElement('div');
+                postItem.classList.add('post-item');
+                postItem.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}">
+                    <div class="post-item-content">
+                        <h3>${post.title}</h3>
+                        <p>${post.content}</p>
+                    </div>
+                `;
+                postsContainer.appendChild(postItem);
+            });
+        })
+        .catch(error => console.error('Error fetching posts:', error));
 });
 
 function openTab(evt, tabName) {
-    // Declare all variables
     var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-
-    // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
+    for (i = 0; tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
-    if (evt) {
-        evt.currentTarget.className += " active";
-    } else {
-        document.querySelector(`.tablinks[onclick="openTab(event, '${tabName}')"]`).className += " active";
-    }
+    evt.currentTarget.className += " active";
 }
 
-function loadResearchData() {
-    fetch('research.json')
-        .then(response => response.json())
-        .then(data => {
-            const container = document.querySelector('.research-container');
-            data.publications.forEach(pub => {
-                const pubDiv = document.createElement('div');
-                pubDiv.className = 'research-item';
-                const imageUrl = pub.image || 'icons/image_placeholder.png';
-                pubDiv.innerHTML = `
-                    <img src="${imageUrl}" alt="Research image"> <!-- Research image -->
-                    <div class="research-item-content">
-                        <h3>${pub.title}</h3>
-                        <p><strong>Authors:</strong> ${pub.authors}</p>
-                        <p>${pub.details}</p>
-                        <a href="${pub.link}" target="_blank">Read More</a>
-                    </div>
-                `;
-                container.appendChild(pubDiv);
-            });
-        })
-        .catch(error => console.error('Error loading research data:', error));
-}
+// Set the default tab to be opened
+document.getElementById("About").style.display = "block";
+document.querySelector(".tablinks").className += " active";

@@ -1,0 +1,14 @@
+{
+    "posts": [
+        {
+            "title": "The Future of Quantum Computing",
+            "content": "Quantum computing is an area of computing focused on developing computer technology based on the principles of quantum theory...",
+            "image": "Pictures/quantum_computing.jpg"
+        },
+        {
+            "title": "Advancements in CRISPR Technology",
+            "content": "CRISPR technology has revolutionized genetic engineering. It allows scientists to edit genomes with unprecedented precision, efficiency, and flexibility...",
+            "image": "Pictures/crispr_technology.jpg"
+        }
+    ]
+}

@@ -2,7 +2,7 @@
 .tabcontent {
     display: flex;
     justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
+    align-items: flex-start; /* Center the content vertically */
     padding: 20px;
     border: none;
     background-color: #ffffff;
